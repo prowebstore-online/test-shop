@@ -1,0 +1,28 @@
+{
+  "name": "@pws/test-shop",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "db:migrate": "wrangler d1 execute pws-data --local --file=schema/migrations/001_initial.sql",
+    "db:seed": "wrangler d1 execute pws-data --local --file=schema/seed.sql"
+  },
+  "dependencies": {
+    "@pws/sdk": "^0.1.0",
+    "@pws/shared": "^0.1.0",
+    "@anthropic-ai/sdk": "^0.95.2",
+    "hono": "^4.7.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@cloudflare/workers-types": "^4.20250520.0",
+    "typescript": "^5.8.0",
+    "wrangler": "^4.0.0"
+  }
+}

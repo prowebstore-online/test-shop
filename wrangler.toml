@@ -1,0 +1,35 @@
+name = "pws-site-test-shop"
+main = "src/index.ts"
+compatibility_date = "2025-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pws-data-test-shop"
+database_id = "e45c2bd4-e137-4cbe-ad74-8981c2e85cd7"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "pws-media"
+
+[observability]
+enabled = true
+
+# Durable Objects (site data + AI sessions)
+[[durable_objects.bindings]]
+name = "SITE_DO"
+class_name = "SiteDO"
+
+[[durable_objects.bindings]]
+name = "SESSION_DO"
+class_name = "SessionDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["SiteDO", "SessionDO"]
+
+# Secrets (set via wrangler secret put):
+#   ANTHROPIC_API_KEY — for AI agent
+#   ADMIN_API_TOKEN — for admin auth
